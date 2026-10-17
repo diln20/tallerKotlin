@@ -29,7 +29,7 @@ kotlin:[
 ["Bucles y rangos","Recorre datos con for, while e índices seguros.",["for (elemento in lista) recorre elementos.","indices da los índices válidos.","while requiere una condición que cambie."],`fun main() {
     val marcas = listOf("Kia", "Mazda", "Renault")
     for ((pos, marca) in marcas.withIndex()) {
-        println("${pos + 1}. $marca")
+        println("\${pos + 1}. $marca")
     }
 }`,"Imprime cinco marcas enumeradas.","Cada marca debe aparecer con un número.","Explora withIndex y forEachIndexed."]
 ]},
@@ -53,7 +53,7 @@ fun main() {
 ["Cadenas y plantillas","Concatena variables y normaliza textos.",["Usa $variable y ${expresion} para interpolar.","trim elimina espacios externos.","uppercase, lowercase y replace transforman texto."],`fun main() {
     val marca = "  renault  ".trim()
     val modelo = "Sandero"
-    println("${marca.uppercase()} - $modelo")
+    println("\${marca.uppercase()} - $modelo")
 }`,"Construye una descripción de vehículo usando interpolación.","La salida combina marca, modelo y año.","Evita concatenar repetidamente con +."],
 ["Excepciones y Result","Controla fallos sin ocultar su causa.",["try/catch maneja excepciones reales.","require valida argumentos.","runCatching representa éxito o fallo de una operación."],`fun convertir(texto: String): Result<Int> =
     runCatching { texto.toInt() }
@@ -111,7 +111,7 @@ data class AutoApi(val id: Int, val make: String)
 ["APIs con Ktor","Consulta servicios HTTP con corrutinas.",["Ktor Client requiere dependencias y engine.","GET consulta recursos; POST envía datos.","Verifica status, tiempos de espera y conectividad."],`// Fragmento: requiere Ktor Client y contexto suspend
 suspend fun descargar(client: io.ktor.client.HttpClient): String {
     val response = client.get("https://vpic.nhtsa.dot.gov/api/vehicles/getallmakes?format=json")
-    if (response.status.value !in 200..299) error("HTTP ${response.status.value}")
+    if (response.status.value !in 200..299) error("HTTP \${response.status.value}")
     return response.bodyAsText()
 }`,"Consume la API pública vPIC y muestra tres marcas.","Distingue carga, HTTP no exitoso y error de red.","Revisa la respuesta real y evita bloquear el hilo principal."],
 ["Corrutinas","Ejecuta tareas suspendibles de forma estructurada.",["suspend permite suspender sin bloquear un hilo.","coroutineScope vincula tareas hijas.","Dispatchers.IO se usa para operaciones bloqueantes."],`import kotlinx.coroutines.*
